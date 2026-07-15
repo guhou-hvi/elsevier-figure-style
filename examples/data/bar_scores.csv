@@ -1,0 +1,5 @@
+model,score
+Baseline A,0.72
+Baseline B,0.78
+Proposed,0.86
+Proposed+,0.89

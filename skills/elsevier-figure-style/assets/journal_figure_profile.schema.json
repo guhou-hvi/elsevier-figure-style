@@ -1,0 +1,762 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Journal Figure Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_root",
+    "identity",
+    "resources",
+    "profiles",
+    "audit",
+    "style"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "bundle_root": {
+      "enum": [".", ".."]
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "display_name",
+        "version",
+        "status",
+        "unofficial",
+        "disclaimer"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "status": {
+          "enum": [
+            "alpha",
+            "beta",
+            "stable"
+          ]
+        },
+        "unofficial": {
+          "type": "boolean"
+        },
+        "disclaimer": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      },
+      "required": [
+        "rule_registry",
+        "submission_checklist",
+        "visual_audit_workflow",
+        "source_basis"
+      ]
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default",
+        "order",
+        "definitions"
+      ],
+      "properties": {
+        "default": {
+          "const": "editor"
+        },
+        "order": {
+          "const": [
+            "official",
+            "editor",
+            "strict"
+          ]
+        },
+        "definitions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "official",
+            "editor",
+            "strict"
+          ],
+          "properties": {
+            "official": {
+              "$ref": "#/$defs/official_profile"
+            },
+            "editor": {
+              "$ref": "#/$defs/editor_profile"
+            },
+            "strict": {
+              "$ref": "#/$defs/strict_profile"
+            }
+          }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file_formats",
+        "artwork_types",
+        "target_layouts",
+        "minimum_bitmap_side_warn_px",
+        "file_size_warn_mb",
+        "dpi_tolerance",
+        "layout_tolerance_fraction",
+        "detectors"
+      ],
+      "properties": {
+        "file_formats": {
+          "type": "object",
+          "required": [
+            "bitmap",
+            "manual",
+            "preferred_submission",
+            "preview_only"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "bitmap": {
+              "$ref": "#/$defs/extensions"
+            },
+            "manual": {
+              "$ref": "#/$defs/extensions"
+            },
+            "preferred_submission": {
+              "$ref": "#/$defs/extensions"
+            },
+            "preview_only": {
+              "$ref": "#/$defs/extensions"
+            }
+          }
+        },
+        "artwork_types": {
+          "type": "object",
+          "required": [
+            "halftone",
+            "combination",
+            "line"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "halftone": {
+              "$ref": "#/$defs/artwork_type"
+            },
+            "combination": {
+              "$ref": "#/$defs/artwork_type"
+            },
+            "line": {
+              "$ref": "#/$defs/artwork_type"
+            }
+          }
+        },
+        "target_layouts": {
+          "type": "object",
+          "required": [
+            "minimal",
+            "single",
+            "one-half",
+            "double",
+            "graphical-abstract"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "minimal": {
+              "$ref": "#/$defs/width_layout"
+            },
+            "single": {
+              "$ref": "#/$defs/width_layout"
+            },
+            "one-half": {
+              "$ref": "#/$defs/width_layout"
+            },
+            "double": {
+              "$ref": "#/$defs/width_layout"
+            },
+            "graphical-abstract": {
+              "$ref": "#/$defs/graphical_layout"
+            }
+          }
+        },
+        "minimum_bitmap_side_warn_px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "file_size_warn_mb": {
+          "$ref": "#/$defs/positive_number"
+        },
+        "dpi_tolerance": {
+          "$ref": "#/$defs/nonnegative_number"
+        },
+        "layout_tolerance_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.1
+        },
+        "detectors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style_integration",
+            "manual_rcparams",
+            "hardcoded_style",
+            "grid",
+            "low_dpi",
+            "unknown_artwork_type",
+            "minor_ticks",
+            "minor_tick_style",
+            "step_spacing",
+            "unit_spacing",
+            "font_official",
+            "font_editor",
+            "plot_title",
+            "small_bitmap",
+            "missing_dpi",
+            "png_preview",
+            "manual_metadata",
+            "color_mode",
+            "transparency",
+            "file_size",
+            "target_layout",
+            "graphical_dimensions",
+            "graphical_ratio",
+            "corrupt_bitmap"
+          ],
+          "properties": {
+            "style_integration": { "$ref": "#/$defs/detector" },
+            "manual_rcparams": { "$ref": "#/$defs/detector" },
+            "hardcoded_style": { "$ref": "#/$defs/detector" },
+            "grid": { "$ref": "#/$defs/detector" },
+            "low_dpi": { "$ref": "#/$defs/detector" },
+            "unknown_artwork_type": { "$ref": "#/$defs/detector" },
+            "minor_ticks": { "$ref": "#/$defs/detector" },
+            "minor_tick_style": { "$ref": "#/$defs/detector" },
+            "step_spacing": { "$ref": "#/$defs/detector" },
+            "unit_spacing": { "$ref": "#/$defs/detector" },
+            "font_official": { "$ref": "#/$defs/threshold_detector" },
+            "font_editor": { "$ref": "#/$defs/threshold_detector" },
+            "plot_title": { "$ref": "#/$defs/detector" },
+            "small_bitmap": { "$ref": "#/$defs/detector" },
+            "missing_dpi": { "$ref": "#/$defs/detector" },
+            "png_preview": { "$ref": "#/$defs/detector" },
+            "manual_metadata": { "$ref": "#/$defs/detector" },
+            "color_mode": { "$ref": "#/$defs/detector" },
+            "transparency": { "$ref": "#/$defs/detector" },
+            "file_size": { "$ref": "#/$defs/detector" },
+            "target_layout": { "$ref": "#/$defs/detector" },
+            "graphical_dimensions": { "$ref": "#/$defs/detector" },
+            "graphical_ratio": { "$ref": "#/$defs/detector" },
+            "corrupt_bitmap": { "$ref": "#/$defs/detector" }
+          }
+        }
+      }
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "font",
+        "figure",
+        "graphical_abstract",
+        "axes",
+        "ticks",
+        "grid",
+        "legend",
+        "line",
+        "bar",
+        "scatter",
+        "heatmap",
+        "annotation",
+        "colorbar",
+        "markers",
+        "palette"
+      ],
+      "properties": {
+        "font": { "$ref": "#/$defs/font_style" },
+        "figure": { "$ref": "#/$defs/figure_style" },
+        "graphical_abstract": { "$ref": "#/$defs/graphical_abstract_style" },
+        "axes": { "$ref": "#/$defs/axes_style" },
+        "ticks": { "$ref": "#/$defs/ticks_style" },
+        "grid": { "$ref": "#/$defs/grid_style" },
+        "legend": { "$ref": "#/$defs/legend_style" },
+        "line": { "$ref": "#/$defs/line_style" },
+        "bar": { "$ref": "#/$defs/bar_style" },
+        "scatter": { "$ref": "#/$defs/scatter_style" },
+        "heatmap": { "$ref": "#/$defs/heatmap_style" },
+        "annotation": { "$ref": "#/$defs/annotation_style" },
+        "colorbar": { "$ref": "#/$defs/colorbar_style" },
+        "markers": { "$ref": "#/$defs/series_map" },
+        "palette": { "$ref": "#/$defs/series_map" }
+      }
+    }
+  },
+  "$defs": {
+    "positive_number": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "nonnegative_number": {
+      "type": "number",
+      "minimum": 0
+    },
+    "unit_interval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "nonempty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "extensions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^\\.[a-z0-9]+$"
+      }
+    },
+    "profile_base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "source_levels",
+        "visual_heuristics"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_levels": {
+          "type": "array"
+        },
+        "visual_heuristics": {
+          "type": "string"
+        }
+      }
+    },
+    "official_profile": {
+      "allOf": [
+        { "$ref": "#/$defs/profile_base" },
+        {
+          "properties": {
+            "source_levels": { "const": ["A"] },
+            "visual_heuristics": { "const": "none" }
+          }
+        }
+      ]
+    },
+    "editor_profile": {
+      "allOf": [
+        { "$ref": "#/$defs/profile_base" },
+        {
+          "properties": {
+            "source_levels": { "const": ["A", "B", "D"] },
+            "visual_heuristics": { "const": "core" }
+          }
+        }
+      ]
+    },
+    "strict_profile": {
+      "allOf": [
+        { "$ref": "#/$defs/profile_base" },
+        {
+          "properties": {
+            "source_levels": { "const": ["A", "B", "C", "D"] },
+            "visual_heuristics": { "const": "all" }
+          }
+        }
+      ]
+    },
+    "artwork_type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_dpi"],
+      "properties": {
+        "minimum_dpi": {
+          "type": "number",
+          "minimum": 72
+        }
+      }
+    },
+    "width_layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width_mm"],
+      "properties": {
+        "width_mm": { "$ref": "#/$defs/positive_number" }
+      }
+    },
+    "graphical_layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_width_px",
+        "minimum_height_px",
+        "minimum_dpi",
+        "aspect_ratio",
+        "aspect_tolerance"
+      ],
+      "properties": {
+        "minimum_width_px": { "type": "integer", "minimum": 1 },
+        "minimum_height_px": { "type": "integer", "minimum": 1 },
+        "minimum_dpi": { "type": "number", "minimum": 72 },
+        "aspect_ratio": { "$ref": "#/$defs/positive_number" },
+        "aspect_tolerance": { "$ref": "#/$defs/nonnegative_number" }
+      }
+    },
+    "detector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "minimum_profile",
+        "severity",
+        "allow_override"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[A-Z0-9-]+$"
+        },
+        "minimum_profile": {
+          "enum": ["official", "editor", "strict"]
+        },
+        "severity": {
+          "enum": ["FAIL", "WARN"]
+        },
+        "allow_override": {
+          "type": "boolean"
+        }
+      }
+    },
+    "threshold_detector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "minimum_profile",
+        "severity",
+        "allow_override",
+        "threshold"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[A-Z0-9-]+$"
+        },
+        "minimum_profile": {
+          "enum": ["official", "editor", "strict"]
+        },
+        "severity": {
+          "enum": ["FAIL", "WARN"]
+        },
+        "allow_override": {
+          "type": "boolean"
+        },
+        "threshold": {
+          "$ref": "#/$defs/positive_number"
+        }
+      }
+    },
+    "font_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family",
+        "sans_serif",
+        "mathtext_fontset",
+        "mathtext_default",
+        "size",
+        "title_size",
+        "label_size",
+        "tick_size",
+        "legend_size"
+      ],
+      "properties": {
+        "family": { "$ref": "#/$defs/nonempty_string" },
+        "sans_serif": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty_string" }
+        },
+        "mathtext_fontset": { "$ref": "#/$defs/nonempty_string" },
+        "mathtext_default": { "$ref": "#/$defs/nonempty_string" },
+        "size": { "$ref": "#/$defs/positive_number" },
+        "title_size": { "$ref": "#/$defs/positive_number" },
+        "label_size": { "$ref": "#/$defs/positive_number" },
+        "tick_size": { "$ref": "#/$defs/positive_number" },
+        "legend_size": { "$ref": "#/$defs/positive_number" }
+      }
+    },
+    "figure_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dpi",
+        "save_dpi",
+        "halftone_dpi",
+        "combination_dpi",
+        "line_art_dpi",
+        "facecolor",
+        "save_bbox",
+        "pad_inches",
+        "default_layout",
+        "default_aspect_ratio",
+        "single_column_width_in",
+        "one_half_column_width_in",
+        "double_column_width_in"
+      ],
+      "properties": {
+        "dpi": { "$ref": "#/$defs/positive_number" },
+        "save_dpi": { "$ref": "#/$defs/positive_number" },
+        "halftone_dpi": { "$ref": "#/$defs/positive_number" },
+        "combination_dpi": { "$ref": "#/$defs/positive_number" },
+        "line_art_dpi": { "$ref": "#/$defs/positive_number" },
+        "facecolor": { "$ref": "#/$defs/nonempty_string" },
+        "save_bbox": { "enum": ["standard", "tight"] },
+        "pad_inches": { "$ref": "#/$defs/nonnegative_number" },
+        "default_layout": { "enum": ["single", "one-half", "double"] },
+        "default_aspect_ratio": { "$ref": "#/$defs/positive_number" },
+        "single_column_width_in": { "$ref": "#/$defs/positive_number" },
+        "one_half_column_width_in": { "$ref": "#/$defs/positive_number" },
+        "double_column_width_in": { "$ref": "#/$defs/positive_number" }
+      }
+    },
+    "graphical_abstract_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_width_cm",
+        "target_height_cm",
+        "minimum_width_px",
+        "minimum_height_px",
+        "minimum_resolution_dpi"
+      ],
+      "properties": {
+        "target_width_cm": { "$ref": "#/$defs/positive_number" },
+        "target_height_cm": { "$ref": "#/$defs/positive_number" },
+        "minimum_width_px": { "type": "integer", "minimum": 1 },
+        "minimum_height_px": { "type": "integer", "minimum": 1 },
+        "minimum_resolution_dpi": { "$ref": "#/$defs/positive_number" }
+      }
+    },
+    "axes_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "facecolor",
+        "edgecolor",
+        "labelcolor",
+        "linewidth",
+        "titlepad",
+        "show_title",
+        "title_policy"
+      ],
+      "properties": {
+        "facecolor": { "$ref": "#/$defs/nonempty_string" },
+        "edgecolor": { "$ref": "#/$defs/nonempty_string" },
+        "labelcolor": { "$ref": "#/$defs/nonempty_string" },
+        "linewidth": { "$ref": "#/$defs/positive_number" },
+        "titlepad": { "$ref": "#/$defs/nonnegative_number" },
+        "show_title": { "type": "boolean" },
+        "title_policy": { "enum": ["single_panel_remove", "keep"] }
+      }
+    },
+    "ticks_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "color",
+        "major_size",
+        "major_width",
+        "minor_visible",
+        "major_n_locator"
+      ],
+      "properties": {
+        "color": { "$ref": "#/$defs/nonempty_string" },
+        "major_size": { "$ref": "#/$defs/nonnegative_number" },
+        "major_width": { "$ref": "#/$defs/positive_number" },
+        "minor_visible": { "type": "boolean" },
+        "major_n_locator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "max", "default"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 1 },
+            "max": { "type": "integer", "minimum": 1 },
+            "default": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    },
+    "grid_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visible", "color", "alpha", "linestyle", "linewidth"],
+      "properties": {
+        "visible": { "type": "boolean" },
+        "color": { "$ref": "#/$defs/nonempty_string" },
+        "alpha": { "$ref": "#/$defs/unit_interval" },
+        "linestyle": { "$ref": "#/$defs/nonempty_string" },
+        "linewidth": { "$ref": "#/$defs/nonnegative_number" }
+      }
+    },
+    "legend_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frameon", "ncol_default"],
+      "properties": {
+        "frameon": { "type": "boolean" },
+        "ncol_default": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "line_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["linewidth", "marker_size", "fill_alpha", "errorbar_capsize"],
+      "properties": {
+        "linewidth": { "$ref": "#/$defs/positive_number" },
+        "marker_size": { "$ref": "#/$defs/positive_number" },
+        "fill_alpha": { "$ref": "#/$defs/unit_interval" },
+        "errorbar_capsize": { "$ref": "#/$defs/nonnegative_number" }
+      }
+    },
+    "bar_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "alpha",
+        "edgecolor",
+        "linewidth",
+        "errorbar_capsize",
+        "value_label_fontsize",
+        "value_label_pad"
+      ],
+      "properties": {
+        "width": { "$ref": "#/$defs/positive_number" },
+        "height": { "$ref": "#/$defs/positive_number" },
+        "alpha": { "$ref": "#/$defs/unit_interval" },
+        "edgecolor": { "$ref": "#/$defs/nonempty_string" },
+        "linewidth": { "$ref": "#/$defs/nonnegative_number" },
+        "errorbar_capsize": { "$ref": "#/$defs/nonnegative_number" },
+        "value_label_fontsize": { "$ref": "#/$defs/positive_number" },
+        "value_label_pad": { "$ref": "#/$defs/nonnegative_number" }
+      }
+    },
+    "scatter_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["size", "alpha", "edgecolor", "linewidth", "marker", "trend_linewidth"],
+      "properties": {
+        "size": { "$ref": "#/$defs/positive_number" },
+        "alpha": { "$ref": "#/$defs/unit_interval" },
+        "edgecolor": { "$ref": "#/$defs/nonempty_string" },
+        "linewidth": { "$ref": "#/$defs/nonnegative_number" },
+        "marker": { "$ref": "#/$defs/nonempty_string" },
+        "trend_linewidth": { "$ref": "#/$defs/positive_number" }
+      }
+    },
+    "heatmap_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cmap",
+        "interpolation",
+        "aspect",
+        "annotation_fontsize",
+        "annotation_light_color",
+        "annotation_dark_color"
+      ],
+      "properties": {
+        "cmap": { "$ref": "#/$defs/nonempty_string" },
+        "interpolation": { "$ref": "#/$defs/nonempty_string" },
+        "aspect": {
+          "oneOf": [
+            { "$ref": "#/$defs/nonempty_string" },
+            { "$ref": "#/$defs/positive_number" }
+          ]
+        },
+        "annotation_fontsize": { "$ref": "#/$defs/positive_number" },
+        "annotation_light_color": { "$ref": "#/$defs/nonempty_string" },
+        "annotation_dark_color": { "$ref": "#/$defs/nonempty_string" }
+      }
+    },
+    "annotation_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fontsize", "color", "panel_label_fontsize", "panel_label_fontweight"],
+      "properties": {
+        "fontsize": { "$ref": "#/$defs/positive_number" },
+        "color": { "$ref": "#/$defs/nonempty_string" },
+        "panel_label_fontsize": { "$ref": "#/$defs/positive_number" },
+        "panel_label_fontweight": { "$ref": "#/$defs/nonempty_string" }
+      }
+    },
+    "colorbar_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fraction", "pad", "label_size", "tick_size"],
+      "properties": {
+        "fraction": { "$ref": "#/$defs/positive_number" },
+        "pad": { "$ref": "#/$defs/nonnegative_number" },
+        "label_size": { "$ref": "#/$defs/positive_number" },
+        "tick_size": { "$ref": "#/$defs/positive_number" }
+      }
+    },
+    "series_map": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cycle", "series"],
+      "properties": {
+        "cycle": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonempty_string" }
+        },
+        "series": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/nonempty_string" }
+        }
+      }
+    }
+  }
+}

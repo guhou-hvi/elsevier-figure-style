@@ -1,0 +1,7 @@
+cost,quality,group
+1.0,0.62,baseline
+1.4,0.68,baseline
+1.9,0.72,baseline
+2.2,0.79,proposed
+2.8,0.83,proposed
+3.3,0.86,proposed

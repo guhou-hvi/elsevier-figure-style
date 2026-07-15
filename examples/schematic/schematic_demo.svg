@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Synthetic schematic demo">
+  <rect width="900" height="520" fill="#ffffff"/>
+  <text x="36" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#000000">(a)</text>
+  <rect x="72" y="92" width="190" height="96" rx="4" fill="#e8f2fb" stroke="#1f4e79" stroke-width="2"/>
+  <text x="167" y="132" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#000000">Input</text>
+  <text x="167" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#000000">raw signals</text>
+  <path d="M282 140 L384 140" stroke="#000000" stroke-width="2.4" fill="none" marker-end="url(#arrow)"/>
+  <rect x="404" y="92" width="190" height="96" rx="4" fill="#eaf6ea" stroke="#357a38" stroke-width="2"/>
+  <text x="499" y="132" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#000000">Model</text>
+  <text x="499" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#000000">feature learning</text>
+  <path d="M614 140 L716 140" stroke="#000000" stroke-width="2.4" fill="none" marker-end="url(#arrow)"/>
+  <rect x="736" y="92" width="118" height="96" rx="4" fill="#fff2cc" stroke="#8a6d00" stroke-width="2"/>
+  <text x="795" y="132" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#000000">Output</text>
+  <text x="795" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#000000">score</text>
+  <text x="36" y="286" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#000000">(b)</text>
+  <rect x="72" y="326" width="782" height="94" rx="4" fill="#f5f5f5" stroke="#777777" stroke-width="1.5"/>
+  <text x="463" y="366" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#000000">Decision layer combines confidence, threshold, and uncertainty.</text>
+  <text x="463" y="394" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#000000">This synthetic SVG is a fixture for visual-audit workflow documentation.</text>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#000000"/>
+    </marker>
+  </defs>
+</svg>

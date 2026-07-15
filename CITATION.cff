@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software in a research workflow or publication, please cite it using the metadata below."
+title: "elsevier-figure-style"
+type: software
+version: 0.1.0
+authors:
+  - given-names: "Peng"
+    family-names: "Ji"
+repository-code: "https://github.com/guhou-hvi/elsevier-figure-style"
+url: "https://github.com/guhou-hvi/elsevier-figure-style"
+license: MIT
+keywords:
+  - academic figures
+  - Elsevier
+  - matplotlib
+  - ggplot2
+  - agent skill

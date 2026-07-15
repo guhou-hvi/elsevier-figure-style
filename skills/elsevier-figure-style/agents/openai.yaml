@@ -1,0 +1,4 @@
+interface:
+  display_name: "Elsevier Figure Style"
+  short_description: "Elsevier-style result plots and figure QA"
+  default_prompt: "Use $elsevier-figure-style to generate or audit this manuscript figure with the editor profile."

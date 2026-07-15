@@ -1,0 +1,13 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Academic Figures",
+      "description": "Skills for creating and auditing academic manuscript figures with publication-oriented formatting.",
+      "skills": [
+        "elsevier-figure-style"
+      ]
+    }
+  ]
+}

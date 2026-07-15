@@ -1,0 +1,420 @@
+{
+  "$schema": "./journal_figure_profile.schema.json",
+  "schema_version": 1,
+  "bundle_root": "..",
+  "identity": {
+    "id": "elsevier",
+    "name": "Elsevier-style",
+    "display_name": "Elsevier Figure Style",
+    "version": "0.1.0",
+    "status": "beta",
+    "unofficial": true,
+    "disclaimer": "Unofficial Elsevier-style helper. Verify the target journal Guide for Authors."
+  },
+  "resources": {
+    "rule_registry": "../references/source-basis/rule-registry.md",
+    "submission_checklist": "../references/submission-checklist.md",
+    "visual_audit_workflow": "../references/visual-audit-workflow.md",
+    "source_basis": "../references/source-basis"
+  },
+  "profiles": {
+    "default": "editor",
+    "order": [
+      "official",
+      "editor",
+      "strict"
+    ],
+    "definitions": {
+      "official": {
+        "description": "Official publisher and target-journal rules only.",
+        "source_levels": [
+          "A"
+        ],
+        "visual_heuristics": "none"
+      },
+      "editor": {
+        "description": "Official rules plus authorized redacted revision evidence and core visual QA heuristics.",
+        "source_levels": [
+          "A",
+          "B",
+          "D"
+        ],
+        "visual_heuristics": "core"
+      },
+      "strict": {
+        "description": "Editor profile plus public cases and the complete visual QA checklist.",
+        "source_levels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "visual_heuristics": "all"
+      }
+    }
+  },
+  "audit": {
+    "file_formats": {
+      "bitmap": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".tif",
+        ".tiff"
+      ],
+      "manual": [
+        ".pdf",
+        ".svg",
+        ".eps"
+      ],
+      "preferred_submission": [
+        ".eps",
+        ".pdf",
+        ".tif",
+        ".tiff",
+        ".jpg",
+        ".jpeg"
+      ],
+      "preview_only": [
+        ".png",
+        ".svg"
+      ]
+    },
+    "artwork_types": {
+      "halftone": {
+        "minimum_dpi": 300
+      },
+      "combination": {
+        "minimum_dpi": 500
+      },
+      "line": {
+        "minimum_dpi": 1000
+      }
+    },
+    "target_layouts": {
+      "minimal": {
+        "width_mm": 30
+      },
+      "single": {
+        "width_mm": 90
+      },
+      "one-half": {
+        "width_mm": 140
+      },
+      "double": {
+        "width_mm": 190
+      },
+      "graphical-abstract": {
+        "minimum_width_px": 1328,
+        "minimum_height_px": 531,
+        "minimum_dpi": 300,
+        "aspect_ratio": 2.5,
+        "aspect_tolerance": 0.25
+      }
+    },
+    "minimum_bitmap_side_warn_px": 300,
+    "file_size_warn_mb": 10,
+    "dpi_tolerance": 0.5,
+    "layout_tolerance_fraction": 0.03,
+    "detectors": {
+      "style_integration": {
+        "rule_id": "STYLE-01",
+        "minimum_profile": "official",
+        "severity": "FAIL",
+        "allow_override": false
+      },
+      "manual_rcparams": {
+        "rule_id": "STYLE-01",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "hardcoded_style": {
+        "rule_id": "STYLE-01",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "grid": {
+        "rule_id": "PUB-04",
+        "minimum_profile": "strict",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "low_dpi": {
+        "rule_id": "OFF-07",
+        "minimum_profile": "official",
+        "severity": "FAIL",
+        "allow_override": true
+      },
+      "unknown_artwork_type": {
+        "rule_id": "OFF-07",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "minor_ticks": {
+        "rule_id": "ED-02",
+        "minimum_profile": "editor",
+        "severity": "FAIL",
+        "allow_override": true
+      },
+      "minor_tick_style": {
+        "rule_id": "ED-02",
+        "minimum_profile": "editor",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "step_spacing": {
+        "rule_id": "ED-04",
+        "minimum_profile": "editor",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "unit_spacing": {
+        "rule_id": "ED-05",
+        "minimum_profile": "editor",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "font_official": {
+        "rule_id": "OFF-05",
+        "minimum_profile": "official",
+        "severity": "FAIL",
+        "allow_override": true,
+        "threshold": 6
+      },
+      "font_editor": {
+        "rule_id": "ED-03",
+        "minimum_profile": "editor",
+        "severity": "WARN",
+        "allow_override": true,
+        "threshold": 7
+      },
+      "plot_title": {
+        "rule_id": "OFF-11",
+        "minimum_profile": "strict",
+        "severity": "WARN",
+        "allow_override": true
+      },
+      "small_bitmap": {
+        "rule_id": "VIS-01",
+        "minimum_profile": "editor",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "missing_dpi": {
+        "rule_id": "OFF-07",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "png_preview": {
+        "rule_id": "OFF-02",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "manual_metadata": {
+        "rule_id": "STYLE-02",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "color_mode": {
+        "rule_id": "OFF-09",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "transparency": {
+        "rule_id": "OFF-09",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "file_size": {
+        "rule_id": "OFF-02",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "target_layout": {
+        "rule_id": "OFF-06",
+        "minimum_profile": "official",
+        "severity": "FAIL",
+        "allow_override": false
+      },
+      "graphical_dimensions": {
+        "rule_id": "OFF-13",
+        "minimum_profile": "official",
+        "severity": "FAIL",
+        "allow_override": false
+      },
+      "graphical_ratio": {
+        "rule_id": "OFF-13",
+        "minimum_profile": "official",
+        "severity": "WARN",
+        "allow_override": false
+      },
+      "corrupt_bitmap": {
+        "rule_id": "STYLE-02",
+        "minimum_profile": "official",
+        "severity": "FAIL",
+        "allow_override": false
+      }
+    }
+  },
+  "style": {
+    "font": {
+      "family": "sans-serif",
+      "sans_serif": [
+        "Arial",
+        "Helvetica",
+        "DejaVu Sans"
+      ],
+      "mathtext_fontset": "stix",
+      "mathtext_default": "regular",
+      "size": 11.0,
+      "title_size": 11.0,
+      "label_size": 11.0,
+      "tick_size": 10.0,
+      "legend_size": 10.0
+    },
+    "figure": {
+      "dpi": 300,
+      "save_dpi": 1000,
+      "halftone_dpi": 300,
+      "combination_dpi": 500,
+      "line_art_dpi": 1000,
+      "facecolor": "#ffffff",
+      "save_bbox": "standard",
+      "pad_inches": 0.0,
+      "default_layout": "one-half",
+      "default_aspect_ratio": 1.5,
+      "single_column_width_in": 3.5433070866,
+      "one_half_column_width_in": 5.5118110236,
+      "double_column_width_in": 7.4803149606
+    },
+    "graphical_abstract": {
+      "target_width_cm": 13.0,
+      "target_height_cm": 5.0,
+      "minimum_width_px": 1328,
+      "minimum_height_px": 531,
+      "minimum_resolution_dpi": 300
+    },
+    "axes": {
+      "facecolor": "#ffffff",
+      "edgecolor": "#000000",
+      "labelcolor": "#000000",
+      "linewidth": 0.6,
+      "titlepad": 4.0,
+      "show_title": false,
+      "title_policy": "single_panel_remove"
+    },
+    "ticks": {
+      "color": "#000000",
+      "major_size": 3.0,
+      "major_width": 0.6,
+      "minor_visible": false,
+      "major_n_locator": {
+        "min": 4,
+        "max": 6,
+        "default": 5
+      }
+    },
+    "grid": {
+      "visible": false,
+      "color": "#d9d9d9",
+      "alpha": 0.35,
+      "linestyle": "-",
+      "linewidth": 0.35
+    },
+    "legend": {
+      "frameon": false,
+      "ncol_default": 1
+    },
+    "line": {
+      "linewidth": 1.0,
+      "marker_size": 4.0,
+      "fill_alpha": 0.18,
+      "errorbar_capsize": 2.0
+    },
+    "bar": {
+      "width": 0.72,
+      "height": 0.72,
+      "alpha": 0.92,
+      "edgecolor": "#000000",
+      "linewidth": 0.5,
+      "errorbar_capsize": 2.0,
+      "value_label_fontsize": 10.0,
+      "value_label_pad": 0.02
+    },
+    "scatter": {
+      "size": 18.0,
+      "alpha": 0.86,
+      "edgecolor": "#000000",
+      "linewidth": 0.4,
+      "marker": "o",
+      "trend_linewidth": 1.0
+    },
+    "heatmap": {
+      "cmap": "viridis",
+      "interpolation": "none",
+      "aspect": "auto",
+      "annotation_fontsize": 10.0,
+      "annotation_light_color": "#000000",
+      "annotation_dark_color": "#ffffff"
+    },
+    "annotation": {
+      "fontsize": 10.0,
+      "color": "#000000",
+      "panel_label_fontsize": 12.0,
+      "panel_label_fontweight": "bold"
+    },
+    "colorbar": {
+      "fraction": 0.035,
+      "pad": 0.025,
+      "label_size": 11.0,
+      "tick_size": 10.0
+    },
+    "markers": {
+      "cycle": [
+        "o",
+        "s",
+        "^",
+        "D",
+        "v",
+        "P",
+        "X"
+      ],
+      "series": {
+        "train": "o",
+        "validation": "s",
+        "baseline": "^",
+        "proposed": "D"
+      }
+    },
+    "palette": {
+      "cycle": [
+        "#0072B2",
+        "#D55E00",
+        "#009E73",
+        "#CC79A7",
+        "#56B4E9",
+        "#E69F00",
+        "#000000"
+      ],
+      "series": {
+        "train": "#0072B2",
+        "validation": "#D55E00",
+        "baseline": "#666666",
+        "proposed": "#0072B2",
+        "model": "#0072B2",
+        "reference": "#666666",
+        "error": "#D55E00",
+        "score": "#009E73"
+      }
+    }
+  }
+}

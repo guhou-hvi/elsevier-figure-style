@@ -1,0 +1,70 @@
+name: Figure-format comment contribution
+description: Contribute a redacted editor, reviewer, journal, or publisher figure-format requirement.
+title: "[Figure rule]: "
+labels:
+  - figure-format
+  - source-evidence
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template only for reusable figure-format requirements. Remove all private manuscript details before submitting.
+  - type: dropdown
+    id: source-level
+    attributes:
+      label: Source level
+      description: Choose the closest evidence level for this requirement.
+      options:
+        - Official journal or publisher guidance
+        - Redacted editor or reviewer comment
+        - Public review case or reviewer-training material
+        - Practical visual QA heuristic
+    validations:
+      required: true
+  - type: input
+    id: journal-or-publisher
+    attributes:
+      label: Journal or publisher
+      description: Use a generic name if the exact journal would reveal private context.
+      placeholder: Elsevier / target journal / other publisher
+    validations:
+      required: false
+  - type: textarea
+    id: reusable-rule
+    attributes:
+      label: Reusable figure-format rule
+      description: State the rule without manuscript-specific details.
+      placeholder: "Example: Remove minor ticks from result plots before submission."
+    validations:
+      required: true
+  - type: textarea
+    id: redacted-evidence
+    attributes:
+      label: Redacted evidence or source link
+      description: Provide a public URL or a short redacted paraphrase. Do not paste confidential correspondence.
+      placeholder: "Example: A reviewer requested larger figure text and top-left panel labels."
+    validations:
+      required: true
+  - type: textarea
+    id: affected-figures
+    attributes:
+      label: Affected figure types
+      description: List the figure families this should apply to.
+      placeholder: line plots, heatmaps, schematic figures, graphical abstracts
+    validations:
+      required: false
+  - type: checkboxes
+    id: redaction-checklist
+    attributes:
+      label: Redaction checklist
+      options:
+        - label: I removed manuscript titles, author names, affiliations, emails, reviewer identities, and submission IDs.
+          required: true
+        - label: I removed unpublished results, private methods, dataset names, and manuscript-specific claims.
+          required: true
+        - label: I am contributing only a reusable formatting requirement or a public source link.
+          required: true
+        - label: I am authorized to publish this paraphrase and have not attached the original private correspondence.
+          required: true
+        - label: I understand this project is unofficial and should not present private/editor-derived rules as official Elsevier policy.
+          required: true
