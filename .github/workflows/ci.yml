@@ -133,7 +133,7 @@ jobs:
 
       - name: Parse R helper
         run: |
-          Rscript -e 'parse(file="skills/elsevier-figure-style/scripts/elsevier_theme.R"); source("skills/elsevier-figure-style/scripts/elsevier_theme.R"); profile <- load_journal_profile("skills/elsevier-figure-style/assets/elsevier_figure_style.json"); stopifnot(profile$style$font$size == 11, profile$style$font$tick_size == 10, profile$style$line$linewidth == 1)'
+          Rscript -e 'parse(file="skills/elsevier-figure-style/scripts/elsevier_theme.R"); source("skills/elsevier-figure-style/scripts/elsevier_theme.R"); profile <- load_journal_profile("skills/elsevier-figure-style/assets/elsevier_figure_style.json"); family <- .resolve_journal_font_family(profile$style$font$sans_serif); stopifnot(profile$style$font$size == 11, profile$style$font$tick_size == 10, profile$style$line$linewidth == 1, family %in% c(profile$style$font$sans_serif, "sans"))'
 
       - name: Reject an inconsistent R profile
         run: |

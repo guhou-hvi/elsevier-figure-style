@@ -225,6 +225,16 @@ journal_palette <- function(config_path = NULL) {
   unlist(profile$style$palette$series, use.names = TRUE)
 }
 
+.resolve_journal_font_family <- function(candidates) {
+  candidates <- as.character(candidates)
+  pdf_families <- names(grDevices::pdfFonts())
+  supported <- candidates[candidates %in% pdf_families]
+  if (length(supported) > 0) {
+    return(supported[[1]])
+  }
+  "sans"
+}
+
 theme_journal <- function(config_path = NULL, base_size = NULL, base_family = NULL) {
   profile <- load_journal_profile(config_path)
   style <- profile$style
@@ -232,7 +242,7 @@ theme_journal <- function(config_path = NULL, base_size = NULL, base_family = NU
     base_size <- style$font$size
   }
   if (is.null(base_family)) {
-    base_family <- style$font$sans_serif[[1]]
+    base_family <- .resolve_journal_font_family(style$font$sans_serif)
   }
   ggplot2::theme_classic(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
