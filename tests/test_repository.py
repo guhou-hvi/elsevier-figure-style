@@ -116,7 +116,8 @@ def test_citation_and_license_are_consistent(root: Path) -> None:
   title   = {elsevier-figure-style},
   version = {0.1.0},
   year    = {2026},
-  url     = {https://github.com/guhou-hvi/elsevier-figure-style},
+  doi     = {10.5281/zenodo.21378649},
+  url     = {https://doi.org/10.5281/zenodo.21378649},
   license = {MIT}
 }"""
 
@@ -125,11 +126,17 @@ def test_citation_and_license_are_consistent(root: Path) -> None:
     assert citation["version"] == "0.1.0"
     assert citation["repository-code"] == "https://github.com/guhou-hvi/elsevier-figure-style"
     assert citation["license"] == "MIT"
-    assert "doi" not in citation
+    assert citation["doi"] == "10.5281/zenodo.21378649"
     assert str(citation["date-released"]) == "2026-07-15"
     assert "source-backed AI Agent Skill" in citation["abstract"]
     assert bibtex in english
     assert bibtex in chinese
+    concept_badge = (
+        "[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21378648.svg)]"
+        "(https://doi.org/10.5281/zenodo.21378648)"
+    )
+    assert concept_badge in english
+    assert concept_badge in chinese
     assert "## Citation\n" in english and "## License\n" in english
     assert "## 引用\n" in chinese and "## 许可\n" in chinese
     assert "Copyright (c) 2026 Peng Ji and contributors" in license_text

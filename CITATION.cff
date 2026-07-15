@@ -8,6 +8,7 @@ abstract: >-
   basic ggplot2 support, metadata checks, and visual QA workflows.
 date-released: 2026-07-15
 version: 0.1.0
+doi: "10.5281/zenodo.21378649"
 authors:
   - given-names: "Peng"
     family-names: "Ji"

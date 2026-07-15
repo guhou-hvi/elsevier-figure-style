@@ -3,6 +3,7 @@
 [English](./README.md) | 简体中文
 
 [![CI](https://github.com/guhou-hvi/elsevier-figure-style/actions/workflows/ci.yml/badge.svg)](https://github.com/guhou-hvi/elsevier-figure-style/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21378648.svg)](https://doi.org/10.5281/zenodo.21378648)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Status: v0.1 beta](https://img.shields.io/badge/status-v0.1%20beta-orange.svg)](#发布状态)
 
@@ -267,7 +268,8 @@ SECURITY.md
   title   = {elsevier-figure-style},
   version = {0.1.0},
   year    = {2026},
-  url     = {https://github.com/guhou-hvi/elsevier-figure-style},
+  doi     = {10.5281/zenodo.21378649},
+  url     = {https://doi.org/10.5281/zenodo.21378649},
   license = {MIT}
 }
 ```
