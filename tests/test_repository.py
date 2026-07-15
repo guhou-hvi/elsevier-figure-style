@@ -126,7 +126,8 @@ def test_citation_and_license_are_consistent(root: Path) -> None:
     assert citation["repository-code"] == "https://github.com/guhou-hvi/elsevier-figure-style"
     assert citation["license"] == "MIT"
     assert "doi" not in citation
-    assert "date-released" not in citation
+    assert str(citation["date-released"]) == "2026-07-15"
+    assert "source-backed AI Agent Skill" in citation["abstract"]
     assert bibtex in english
     assert bibtex in chinese
     assert "## Citation\n" in english and "## License\n" in english

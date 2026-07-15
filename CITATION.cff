@@ -2,6 +2,11 @@ cff-version: 1.2.0
 message: "If you use this software in a research workflow or publication, please cite it using the metadata below."
 title: "elsevier-figure-style"
 type: software
+abstract: >-
+  An unofficial, source-backed AI Agent Skill for generating, revising,
+  and auditing Elsevier-style manuscript figures, with matplotlib support,
+  basic ggplot2 support, metadata checks, and visual QA workflows.
+date-released: 2026-07-15
 version: 0.1.0
 authors:
   - given-names: "Peng"
