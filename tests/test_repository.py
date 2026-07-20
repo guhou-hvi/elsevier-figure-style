@@ -150,26 +150,3 @@ def test_visual_audit_fixture_has_required_report_fields(root: Path) -> None:
     for field in ("Severity", "Location", "Source/Rule", "Recommended fix"):
         assert field in report
     assert "VIS-02" in report
-
-
-def test_xiaohongshu_promotion_matches_project_capabilities(root: Path) -> None:
-    promotion = (root / "propagandize/xiaohongshu.md").read_text(encoding="utf-8")
-    public_copy = promotion.split("## 可直接发布正文", 1)[1].split("## 话题标签", 1)[0]
-
-    assert "npx skills add guhou-hvi/elsevier-figure-style" in public_copy
-    assert "Python/matplotlib 是目前支持最完整的路径" in public_copy
-    assert "v0.1 只负责审查，不会自动重绘" in public_copy
-    assert "不会承诺“一键合规”或“保证过审”" in public_copy
-    assert "已上架 skills.sh" not in public_copy
-    assert promotion.count("### 第 ") == 9
-
-    comparison_assets = (
-        "docs/assets/comparison/before-line.png",
-        "docs/assets/comparison/after-line.png",
-        "docs/assets/comparison/before-bar.png",
-        "docs/assets/comparison/after-bar.png",
-        "docs/assets/comparison/before-scatter.png",
-        "docs/assets/comparison/after-scatter.png",
-    )
-    assert all(asset in promotion for asset in comparison_assets)
-    assert "不宣称当前已经可以在 skills.sh 站内搜索到" in promotion

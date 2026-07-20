@@ -21,3 +21,4 @@ examples/outputs/*
 .env.*
 !.env.example
 *.log
+propagandize/
