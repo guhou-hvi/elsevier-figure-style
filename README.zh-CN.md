@@ -3,6 +3,7 @@
 [English](./README.md) | 简体中文
 
 [![CI](https://github.com/guhou-hvi/elsevier-figure-style/actions/workflows/ci.yml/badge.svg)](https://github.com/guhou-hvi/elsevier-figure-style/actions/workflows/ci.yml)
+[![skills.sh](https://skills.sh/b/guhou-hvi/elsevier-figure-style)](https://www.skills.sh/guhou-hvi/elsevier-figure-style)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21378648.svg)](https://doi.org/10.5281/zenodo.21378648)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Status: v0.1 beta](https://img.shields.io/badge/status-v0.1%20beta-orange.svg)](#发布状态)
@@ -100,7 +101,7 @@ python skills/elsevier-figure-style/scripts/check_elsevier_figure_style.py --pat
 
 ## 快速开始
 
-要求 Python 3.10 或更高版本。安装 Agent Skill：
+要求 Python 3.10 或更高版本。本 Skill 已被 [skills.sh](https://www.skills.sh/guhou-hvi/elsevier-figure-style/elsevier-figure-style) 收录，可从公开 GitHub 仓库安装：
 
 ```bash
 npx skills add guhou-hvi/elsevier-figure-style

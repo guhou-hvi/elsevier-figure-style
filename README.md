@@ -3,6 +3,7 @@
 English | [简体中文](./README.zh-CN.md)
 
 [![CI](https://github.com/guhou-hvi/elsevier-figure-style/actions/workflows/ci.yml/badge.svg)](https://github.com/guhou-hvi/elsevier-figure-style/actions/workflows/ci.yml)
+[![skills.sh](https://skills.sh/b/guhou-hvi/elsevier-figure-style)](https://www.skills.sh/guhou-hvi/elsevier-figure-style)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21378648.svg)](https://doi.org/10.5281/zenodo.21378648)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Status: v0.1 beta](https://img.shields.io/badge/status-v0.1%20beta-orange.svg)](#release-status)
@@ -100,7 +101,7 @@ Every substantive finding uses a rule ID from `skills/elsevier-figure-style/refe
 
 ## Quick Start
 
-Requirements: Python 3.10 or newer. Install the Agent Skill from GitHub:
+Requirements: Python 3.10 or newer. The Skill is listed on [skills.sh](https://www.skills.sh/guhou-hvi/elsevier-figure-style/elsevier-figure-style) and installs from the public GitHub repository:
 
 ```bash
 npx skills add guhou-hvi/elsevier-figure-style

@@ -15,6 +15,15 @@ def test_readmes_are_utf8_and_link_each_other(root: Path) -> None:
     assert "check_environment.py" in english + chinese
     assert "after the repository is published" not in english
     assert "GitHub 仓库发布后" not in chinese
+    skills_badge = (
+        "[![skills.sh](https://skills.sh/b/guhou-hvi/elsevier-figure-style)]"
+        "(https://www.skills.sh/guhou-hvi/elsevier-figure-style)"
+    )
+    skills_page = "https://www.skills.sh/guhou-hvi/elsevier-figure-style/elsevier-figure-style"
+    assert skills_badge in english
+    assert skills_badge in chinese
+    assert skills_page in english
+    assert skills_page in chinese
 
 
 def test_readmes_use_the_six_image_comparison_table(root: Path) -> None:
